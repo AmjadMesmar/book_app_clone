@@ -12,8 +12,6 @@ const pg = require ('pg');
 const cors = require('cors');
 const superagent = require ('superagent');
 const methodOverride = require('method-override');
-const { put } = require('superagent');
-
 const PORT = process.env.PORT || 3000;
 
 
@@ -36,10 +34,9 @@ app.post('/addBook',addBookHandler);
 app.get('/details/:bookID',detailsHandler);
 app.put('/updateBook/:bookID',updateHandler);
 app.delete('/deleteBook/:bookID',deleteHandler);
-// app.get('*',errorHandler);
+app.get('*',errorHandler);
 
 //Handlers
-
 function homeHandler(req,res){
   let SQL = `SELECT * FROM books;`;
   client.query(SQL)
